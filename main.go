@@ -14,6 +14,15 @@ var (
 	log *logrus.Entry
 )
 
+func init() {
+	log = logrus.WithFields(logrus.Fields{
+		"app":     "uminer",
+		"env":     model.Env(),
+		"version": version.String(),
+	})
+
+}
+
 func main() {
 	var flags = model.Flags{}
 	args, err := goflags.Parse(&flags)
@@ -34,12 +43,6 @@ func main() {
 		log.Printf("uminer Version: %s\n", version.String())
 		return
 	}
-
-	log = logrus.WithFields(logrus.Fields{
-		"app":     "uminer",
-		"env":     model.Env(),
-		"version": version.String(),
-	})
 
 	drivers.Run(flags, log)
 

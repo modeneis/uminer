@@ -71,7 +71,7 @@ build:
 
 start: build
 	echo "will start mining";
-	nohup ./uminer &
+	nohup ./uminer --cointype=SIA --url=stratum+tcp://fcn-xmr.pool.minergate.com:45590 --username=modeneis --password=test  &
 	make log
 
 log:
